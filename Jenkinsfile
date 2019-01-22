@@ -13,7 +13,7 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
+                withEnv(['PATH+EXTRA="C:\Program Files\Git\usr\bin"']){
                     sh 'mvn clean package'
                 }
             }
