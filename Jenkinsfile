@@ -13,8 +13,11 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+                withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
+                    sh 'mvn clean package'
+                }
             }
+
             post {
                 success {
                     echo 'Now Archiving...'
