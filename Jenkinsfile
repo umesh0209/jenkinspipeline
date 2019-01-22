@@ -13,9 +13,7 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                withEnv(['PATH+EXTRA="C:\Program Files\Git\usr\bin"']){
-                    sh 'mvn clean package'
-                }
+                    '/c/Program Files/Git/usr/bin/sh' 'mvn clean package'
             }
 
             post {
@@ -30,13 +28,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        '/c/Program Files/Git/usr/bin/sh' "scp -i /e/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        '/c/Program Files/Git/usr/bin/sh' "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
